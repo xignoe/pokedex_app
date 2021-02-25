@@ -9,13 +9,12 @@ let pokemonList = [
 
 console.log("test");
 
-for (let i = 0; i < pokemonList.length; i++) {
-    if (pokemonList[i].height >= 2.2) {
+pokemonList.forEach(function(pokemon){
+    if (pokemon.height >= 2.2) {
         console.log("Wow that's big!");
-        document.write('<p>' + pokemonList[i].name + ' (height: ' + pokemonList[i].height + ') - Wow that is big!' + '</p>');
+        document.write('<p>' + pokemon.name + ' (height: ' + pokemon.height + ') - Wow that is big!' + '</p>');
     } else {
-        document.write('<p>' + pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')');
+        document.write('<p>' + pokemon.name + ' (height: ' + pokemon.height + ')');
     }
 
-
-}
+})
