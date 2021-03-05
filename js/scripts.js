@@ -20,27 +20,31 @@ let pokemonRepository = (function () {
             pokemonList.push(pokemon);
         }
     };
+    
+    function addListItem(pokemon) {
+        let pokeName = pokemon.name;
+        let pokeHeight = pokemon.height;
+        let pokemon_list_index = document.querySelector('.pokemon-list');
+        let listItem = document.createElement('li');
+        let button = document.createElement('button');
+        button.innerText = pokeName;
+        button.classList.add('pokemon-list-item');
+        button.classList.add('button-style');
+        listItem.appendChild(button);
+        pokemon_list_index.appendChild(listItem);
+        button.addEventListener('click', function() {
+            showDetails(pokemon);
+        })
+    }
+        
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    }
+
+
 })();
 
-function addListItem(pokemon) {
-    let pokeName = pokemon.name;
-    let pokeHeight = pokemon.height;
-    let pokemon_list_index = document.querySelector('.pokemon-list');
-    let listItem = document.createElement('li');
-    let button = document.createElement('button');
-    button.innerText = pokeName;
-    button.classList.add('pokemon-list-item');
-    button.classList.add('button-style');
-    listItem.appendChild(button);
-    pokemon_list_index.appendChild(listItem);
-    button.addEventListener('click', function() {
-        showDetails(pokemon);
-    })
-}
-    
-function showDetails(pokemon) {
-    console.log(pokemon);
-}
+
 
 // Use getAll function to return pokemon list and forEach loop to print pokemon info to index.html
 
