@@ -11,15 +11,6 @@ let pokemonRepository = (function () {
         { name: 'Exeggutor', height: 2, types: ['psychic', 'grass'] }
     ];
 
-    return {
-        getAll: function() {
-            return pokemonList;
-        },
-
-        add: function(pokemon) {
-            pokemonList.push(pokemon);
-        }
-    };
     
     function addListItem(pokemon) {
         let pokeName = pokemon.name;
@@ -41,6 +32,18 @@ let pokemonRepository = (function () {
         console.log(pokemon);
     }
 
+    return {
+        getAll: function() {
+            return pokemonList;
+        },
+
+        add: function(pokemon) {
+            pokemonList.push(pokemon);
+        },
+
+        addListItem: addListItem,
+    };
+    
 
 })();
 
