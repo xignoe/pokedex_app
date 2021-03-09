@@ -2,6 +2,8 @@
 
 let pokemonRepository = (function () {
 
+    let pokemonApiUrl = 'https://pokeapi.co/api/v2/pokemon/';
+
     let pokemonList = [
         { name: 'Cloyster', height: 1.5, types: ['ice','water'] }, 
         { name: 'Charizard', height: 1.7, types: ['fire', 'flying'] },
@@ -11,6 +13,41 @@ let pokemonRepository = (function () {
         { name: 'Exeggutor', height: 2, types: ['psychic', 'grass'] }
     ];
 
+    function add(pokemon) {
+        if ("name" in pokemon && typeof pokemon === "object" && "detailsUrl" in pokemon) {
+            pokemonList.push(pokemon);
+        } else {
+            console.log("Incorrect pokemon");
+        }
+    },
+
+    function loadList() {
+        return fetch(pokemonApiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach(function (pokemonObject) {
+                let pokemon = {
+                    detailsUrl: pokemonObject.url,
+                    name: pokemonObject.name
+                };
+                add(pokemon);
+            });
+    }).catch(function (err) {
+        console.error(err);
+    },
+
+    function loadDetails(pokemonObject) {
+        let url = pokemonObject.detailsUrl;
+        return fetch(url).then((response) => {
+            return response.json();
+        }).then(function (details) {
+            pokemonObject.types = details.types;
+            pokemonObject.height = details.height;
+            pokemonObject.imageUrl = details.sprites.front_default;
+        }).catch(function (err) {
+            console.error(err);
+        });
+    },
     
     function addListItem(pokemon) {
         let pokeName = pokemon.name;
@@ -26,11 +63,13 @@ let pokemonRepository = (function () {
         button.addEventListener('click', function() {
             showDetails(pokemon);
         })
-    }
+    },
         
     function showDetails(pokemon) {
-        console.log(pokemon);
-    }
+        loadDetails(pokemon).then(function () {
+            console.log(pokemon);
+        }
+    },
 
     return {
         getAll: function() {
@@ -53,5 +92,4 @@ let pokemonRepository = (function () {
 
 pokemonRepository.getAll().forEach(function(pokemon){
     pokemonRepository.addListItem(pokemon);
-})
-
+});
