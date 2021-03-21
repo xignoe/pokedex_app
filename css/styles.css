@@ -8,5 +8,22 @@
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 5px;
-    font-family: "Grandstander", cursive;
+    font-family: "Verdana", cursive;
   }
+ 
+
+html, 
+body {
+  font-family: Arial, sans-serif;
+}
+
+.pokemon-list-item {
+  background-color: lightgray;
+  position: relative;
+}
+
+.pokedex-list__item:hover, .pokedex-list__item:focus {
+  color: white;
+}
+
+
