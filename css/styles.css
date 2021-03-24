@@ -26,4 +26,51 @@ body {
   color: white;
 }
 
+.modalClose {
+  position: relative;
+  left: 90%;
+  font-size: 15px;
+}
+
+.modal-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(211, 211, 211, 0.432);
+}
+
+.modalElements {
+  font-family: "Verdana";
+  font-size: 18px;
+  text-align: center;
+
+}
+
+.is-visible {
+  display: block;
+
+}
+
+.imageDiv {
+  width: 100%;
+  text-align: center;
+}
+
+.modalImage {
+  /* margin:auto; */
+  width: 40%;
+}
+
+.modal {
+  width: 50%;
+  height: 60%;
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 20px;
+
+}
 

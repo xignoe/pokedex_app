@@ -5,7 +5,7 @@ let pokemonRepository = (function () {
     // Define API URL and create pokemon list
     let pokemonApiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=10';
     let pokemonList = [];
-    let modalContainer = document.querySelector('#modal-container');
+    let modalContainer = document.querySelector('.modal-container');
 
     const getAll = () => pokemonList;
 
@@ -23,10 +23,10 @@ let pokemonRepository = (function () {
         return fetch(pokemonApiUrl).then(function (response) {
             return response.json();
         }).then(function (json) {
-            json.results.forEach(function (pokemon) {
+            json.results.forEach(function (pokemonItem) {
                 let pokemon = {
-                    detailsUrl: pokemon.url,
-                    name: pokemon.name
+                    detailsUrl: pokemonItem.url,
+                    name: pokemonItem.name
                 };
                 add(pokemon);
             });
@@ -37,7 +37,7 @@ let pokemonRepository = (function () {
 
     // function to load pokemon details
     function loadDetails(pokemon) {
-        toggleLoadingMessage();
+//        toggleLoadingMessage();
         let url = pokemon.detailsUrl;
 
         return fetch(url).then((response) => {
@@ -84,14 +84,19 @@ let pokemonRepository = (function () {
 
             // generate new modal
             let modal = document.createElement('div');
+            let buttonDiv = document.createElement('div');
+            let imageDiv = document.createElement('div');
+            let textDiv = document.createElement('div');
+            buttonDiv.classList.add('buttonDiv');
+            imageDiv.classList.add('imageDiv');
             modal.classList.add('modal');
             
             // create modal content
             let closeButtonElement = document.createElement('button');
-            closeButtonElement.classList.add('modalClose', 'topRight');
+            closeButtonElement.classList.add('modalClose');
             closeButtonElement.innerHTML = 'X';
             closeButtonElement.addEventListener('click', () => {
-                hideDetails();
+                hideModal();
             })
 
             let modalElements = document.createElement('div');
@@ -107,7 +112,9 @@ let pokemonRepository = (function () {
 
             // append content to modal structure
             modalElements.append(pokemonName);
-            modal.append(closeButtonElement, pokemonImage, modalElements);
+            buttonDiv.append(closeButtonElement);
+            imageDiv.append(pokemonImage);
+            modal.append(buttonDiv, imageDiv, modalElements);
             modalContainer.append(modal);
 
             // make visible
@@ -141,10 +148,6 @@ let pokemonRepository = (function () {
         });
     }
 
-    function toggleLoadingMessage() {
-        let loader = document.querySelector('.loader');
-        loader.classList.toggle('is-active');
-    }
       
 
     return {
