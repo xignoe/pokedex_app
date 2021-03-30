@@ -1,4 +1,23 @@
-.pokemon-list-item {
+.modal-body {
+  text-align: center;
+}
+
+body {
+  padding: 18x;
+  text-align: center;
+  font-size: 15px;
+  font-family: 'Courier New';
+}
+
+.list-group {
+  width: 690px;
+  margin: 38px auto;
+  text-align: center;
+}
+
+/* OLD CODE
+
+  .pokemon-list-item {
     display: block;
     cursor: pointer;
     background-color: var(--light);
@@ -60,7 +79,6 @@ body {
 }
 
 .modalImage {
-  /* margin:auto; */
   width: 40%;
 }
 
@@ -73,4 +91,4 @@ body {
   padding: 20px;
 
 }
-
+*/
